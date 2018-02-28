@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
+#include <memory>
 #include "Window.h"
+#include "InputController.h"
 
 /*
 GameWindow Class:
@@ -15,7 +17,7 @@ public:
 	@const char* - string to name the current window
 	@HINSTANCE - handle to the win main instance
 	*/
-	GameWindow(const char*, HINSTANCE);
+	GameWindow(std::shared_ptr<InputController> inputController, const char* windowName, HINSTANCE hInstance);
 	GameWindow(WNDCLASSEX);
 	virtual ~GameWindow() = default;
 
@@ -27,4 +29,6 @@ public:
 	// Global properties related to the window
 	static unsigned int WIDTH;
 	static unsigned int HEIGHT;
+private:
+	std::shared_ptr<InputController> mInputController;
 };

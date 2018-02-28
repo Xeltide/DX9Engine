@@ -8,8 +8,8 @@ using namespace std::chrono;
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pstrCmdLine, int iCmdShow)
 {
 	MSG msg;
-	GameWindow* window = new GameWindow("Background Render", hInstance);
 	GameEngine* engine = new GameEngine();
+	GameWindow* window = new GameWindow(engine->GetInputController(), "Background Render", hInstance);
 
 	if (!window->Register())
 	{

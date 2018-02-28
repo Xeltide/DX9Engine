@@ -5,6 +5,7 @@
 #include "RenderEngine.h"
 #include "GameStateManager.h"
 #include "TestScene.h"
+#include "InputController.h"
 
 /*
 GameEngine Class:
@@ -46,7 +47,9 @@ public:
 	*/
 	BOOL Loop(double);
 
+	shared_ptr<InputController> GetInputController();
 private:
 	shared_ptr<RenderEngine> mRenderEngine;
+	shared_ptr<InputController> mInputController;
 	GameStateManager* mStateManager;
 };

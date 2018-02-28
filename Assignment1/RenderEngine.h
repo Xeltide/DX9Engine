@@ -52,6 +52,7 @@ public:
 	@BOOL - true if successful
 	*/
 	BOOL RenderScene(double, Scene*);
+	void LoadScene(Scene* scene);
 	// ARTIFACT - potential reuse later
 	void Draw(int, DWORD*);
 
@@ -69,10 +70,7 @@ public:
 private:
 	HRESULT RenderObjects(Scene*);
 
-	unsigned int mFrameCount = 0;
-	double mTimeSum = 0;
-	unsigned int mFPS = 0;
-
 	LPDIRECT3D9 m_pD3D;
 	LPDIRECT3DDEVICE9 m_pDevice;
+	int mAmbientLighting = 0xFFFFFF;
 };

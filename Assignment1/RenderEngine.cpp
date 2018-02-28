@@ -35,6 +35,8 @@ BOOL RenderEngine::Init(HWND hWnd)
 		return FALSE;
 	}
 
+	m_pDevice->SetRenderState(D3DRS_LIGHTING, TRUE);
+	//m_pDevice->SetRenderState(D3DRS_AMBIENT, 0xFFFFFF);
 	return TRUE;
 }
 
@@ -77,38 +79,29 @@ BOOL RenderEngine::InitDirect3DDevice(HWND hWndTarget, int Width, int Height, BO
 		// TODO: Error message and close
 		return FALSE;
 	}
+
 	return TRUE;
 }
 
 BOOL RenderEngine::RenderScene(double deltaTime, Scene* scene)
 {
 	HRESULT r;
-	D3DLOCKED_RECT LockedRect;//locked area of display memory(buffer really) we are drawing to
 	LPDIRECT3DSURFACE9 pBackSurf = 0;
-
-	mFrameCount++;
-	mTimeSum += deltaTime;
-
-	if (mTimeSum >= 1)
-	{
-		mFPS = mFrameCount;
-		mTimeSum -= 1;
-		mFrameCount = 0;
-	}
 
 	if (!m_pDevice)
 	{
-		//SetError("Cannot render because there is no device");
+		OutputDebugString("No device found\n");
 		return E_FAIL;
 	}
 
 	//clear the display arera with colour black, ignore stencil buffer
-	m_pDevice->Clear(0, 0, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 25), 1.0f, 0);
+	m_pDevice->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 25), 1.0f, 0);
 
 	//get pointer to backbuffer
 	r = m_pDevice->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackSurf);
 	if (FAILED(r))
 	{
+		OutputDebugString("GetBackBuffer failed\n");
 		//SetError("Couldn't get backbuffer");
 	}
 
@@ -121,21 +114,7 @@ BOOL RenderEngine::RenderScene(double deltaTime, Scene* scene)
 		}
 	}
 
-	//get a lock on the surface
-	r = pBackSurf->LockRect(&LockedRect, NULL, 0);
-	if (FAILED(r))
-	{
-		//SetError("Could not lock the back buffer");
-	}
-
 	RenderObjects(scene);
-
-	DWORD* pData = (DWORD*)(LockedRect.pBits);
-	//DRAW CODE GOES HERE - use pData
-	Draw(LockedRect.Pitch, pData);
-
-	pBackSurf->UnlockRect();
-	pData = 0;
 
 	pBackSurf->Release();//release lock
 	pBackSurf = 0;
@@ -146,27 +125,17 @@ BOOL RenderEngine::RenderScene(double deltaTime, Scene* scene)
 
 HRESULT RenderEngine::RenderObjects(Scene* scene)
 {
-	m_pDevice->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
-	m_pDevice->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
-	m_pDevice->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
 	if (SUCCEEDED(m_pDevice->BeginScene()))
 	{
 		// BEGIN CAMERA
-		// For our world matrix, we will just leave it as the identity
-		//D3DXMATRIXA16 matWorld;
-		//D3DXMatrixRotationY(&matWorld, timeGetTime() / 1000.0f);
-		//m_pDevice->SetTransform(D3DTS_WORLD, &matWorld);
 
 		// Set up our view matrix. A view matrix can be defined given an eye point,
 		// a point to lookat, and a direction for which way is up. Here, we set the
 		// eye five units back along the z-axis and up three units, look at the 
 		// origin, and define "up" to be in the y-direction.
-		D3DXVECTOR3 vEyePt(0.0f, 3.0f, -10.0f);
-		D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);
-		D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);
-		D3DXMATRIXA16 matView;
-		D3DXMatrixLookAtLH(&matView, &vEyePt, &vLookatPt, &vUpVec);
-		m_pDevice->SetTransform(D3DTS_VIEW, &matView);
+		const GameObject* camera = scene->GetGameObject(0);
+		D3DXMATRIXA16 cameraMatrix = camera->GetTransform().GetMatrix();
+		m_pDevice->SetTransform(D3DTS_VIEW, &cameraMatrix);
 
 		// For the projection matrix, we set up a perspective transform (which
 		// transforms geometry from 3D view space to 2D viewport space, with
@@ -181,37 +150,36 @@ HRESULT RenderEngine::RenderObjects(Scene* scene)
 
 		RenderMeshes(scene);
 		RenderText(scene);
+
 		m_pDevice->EndScene();
 		return S_OK;
 	}
-}
-
-void RenderEngine::Draw(int Pitch, DWORD* pData)
-{
-	//DWORD Offset = 100 * Pitch / 4 + 200;
-	//pData[Offset] = D3DCOLOR_XRGB(255, 0, 0);
-
-	//SimpleBitmapDraw();
+	return E_FAIL;
 }
 
 void RenderEngine::RenderMeshes(Scene* scene)
 {
-	vector<MeshRenderer*> allMeshes = scene->GetAllMeshes();
-	for (auto it = allMeshes.begin(); it != allMeshes.end(); ++it)
+	vector<GameObject*> objects = scene->GetGameObjects();
+	for (auto it = objects.begin(); it != objects.end(); it++)
 	{
-		// Meshes are divided into subsets, one for each material. Render them in
-		// a loop
-		DWORD numMaterials = (*it)->GetNumMaterials();
-		for (DWORD i = 0; i < numMaterials; i++)
+		if ((*it)->GetMeshRenderer() != nullptr)
 		{
-			// Set the material and texture for this subset
-			m_pDevice->SetMaterial(&((*it)->GetMeshMaterials()[i]));
-			m_pDevice->SetTexture(0, (*it)->GetMeshTextures()[i]);
-
-			// Draw the mesh subset
-			if (FAILED((*it)->GetMesh()->DrawSubset(i)))
+			m_pDevice->SetTransform(D3DTS_WORLD, &((*it)->GetTransform().GetMatrix()));
+			// Meshes are divided into subsets, one for each material. Render them in
+			// a loop
+			MeshRenderer* mesh = (*it)->GetMeshRenderer();
+			DWORD numMaterials = mesh->GetNumMaterials();
+			for (DWORD i = 0; i < numMaterials; i++)
 			{
-				OutputDebugString("FAILED TO DRAW MESH\n");
+				// Set the material and texture for this subset
+				m_pDevice->SetMaterial(&(mesh->GetMeshMaterials()[i]));
+				m_pDevice->SetTexture(0, mesh->GetMeshTextures()[i]);
+
+				// Draw the mesh subset
+				if (FAILED(mesh->GetMesh()->DrawSubset(i)))
+				{
+					OutputDebugString("FAILED TO DRAW MESH\n");
+				}
 			}
 		}
 	}
@@ -219,15 +187,35 @@ void RenderEngine::RenderMeshes(Scene* scene)
 
 void RenderEngine::RenderText(Scene* scene)
 {
-	vector<DXText*> allText = scene->GetAllText();
-	(*allText.begin())->SetText(to_string(mFPS));
-	for (auto it = allText.begin(); it != allText.end(); ++it)
+	vector<GameObject*> objects = scene->GetGameObjects();
+	for (auto it = objects.begin(); it != objects.end(); it++)
 	{
-		(*it)->Draw();
+		if ((*it)->GetTextRenderer() != nullptr)
+		{
+			(*it)->GetTextRenderer()->Draw();
+		}
 	}
 }
 
 LPDIRECT3DDEVICE9 RenderEngine::GetDevice()
 {
 	return m_pDevice;
+}
+
+void RenderEngine::LoadScene(Scene* scene)
+{
+	unsigned int lightNumber = 0;
+	vector<GameObject*> objects = scene->GetGameObjects();
+	for (auto it = objects.begin(); it != objects.end(); it++)
+	{
+		if ((*it)->GetMeshRenderer() != nullptr)
+		{
+			(*it)->GetMeshRenderer()->Load(m_pDevice);
+		}
+		if ((*it)->GetLightRenderer() != nullptr)
+		{
+			(*it)->GetLightRenderer()->Load(m_pDevice, lightNumber);
+			lightNumber++;
+		}
+	}
 }

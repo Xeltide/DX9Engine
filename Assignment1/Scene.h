@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 
-#include "DXText.h"
-#include "MeshRenderer.h"
+#include "GameObject.h"
+//#include "TextRenderer.h"
+//#include "MeshRenderer.h"
 /*
 Scene Class:
 - Contains the render data for a particular scene
@@ -25,19 +26,26 @@ public:
 	void SetBGSurface(LPDIRECT3DSURFACE9);
 	const LPDIRECT3DSURFACE9 GetBGSurface();
 
-	void PushText(DXText*);
-	const DXText* GetText(const unsigned int);
-	const vector<DXText*> GetAllText();
+	/*void PushText(TextRenderer*);
+	const TextRenderer* GetText(const unsigned int);
+	const vector<TextRenderer*> GetAllText();
 
 	void PushMesh(MeshRenderer*);
 	const MeshRenderer* GetMesh(const unsigned int);
-	const vector<MeshRenderer*> GetAllMeshes();
+	const vector<MeshRenderer*> GetAllMeshes();*/
 
+	void PushObject(GameObject* object);
+	const GameObject* GetGameObject(const unsigned int);
+	const vector<GameObject*> GetGameObjects();
+
+	void Update(double deltaTime);
 protected:
 	LPDIRECT3DDEVICE9 m_pDevice = 0;
 
 private:
+	bool mLoaded;
 	LPDIRECT3DSURFACE9 m_pBGSurface = 0;
-	vector<DXText*> mAllDXText;
-	vector<MeshRenderer*> mAllMeshes;
+	vector<GameObject*> mObjects;
+	/*vector<TextRenderer*> mAllTextRenderer;
+	vector<MeshRenderer*> mAllMeshes;*/
 };

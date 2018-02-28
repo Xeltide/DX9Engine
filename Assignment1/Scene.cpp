@@ -26,19 +26,19 @@ const LPDIRECT3DSURFACE9 Scene::GetBGSurface()
 	return m_pBGSurface;
 }
 
-void Scene::PushText(DXText* text)
+/*void Scene::PushText(TextRenderer* text)
 {
-	mAllDXText.push_back(text);
+	mAllTextRenderer.push_back(text);
 }
 
-const DXText* Scene::GetText(const unsigned int index)
+const TextRenderer* Scene::GetText(const unsigned int index)
 {
-	return mAllDXText[index];
+	return mAllTextRenderer[index];
 }
 
-const vector<DXText*> Scene::GetAllText()
+const vector<TextRenderer*> Scene::GetAllText()
 {
-	return mAllDXText;
+	return mAllTextRenderer;
 }
 
 void Scene::PushMesh(MeshRenderer* mesh)
@@ -54,4 +54,27 @@ const MeshRenderer* Scene::GetMesh(const unsigned int index)
 const vector<MeshRenderer*> Scene::GetAllMeshes()
 {
 	return mAllMeshes;
+}*/
+
+void Scene::PushObject(GameObject* object)
+{
+	mObjects.push_back(object);
+}
+
+const GameObject* Scene::GetGameObject(const unsigned int index)
+{
+	return mObjects[index];
+}
+
+const vector<GameObject*> Scene::GetGameObjects()
+{
+	return mObjects;
+}
+
+void Scene::Update(double deltaTime)
+{
+	for (auto it = mObjects.begin(); it != mObjects.end(); it++)
+	{
+		(*it)->Update(deltaTime);
+	}
 }

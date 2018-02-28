@@ -1,5 +1,7 @@
 #pragma once
+#include <stack>
 #include "GameState.h"
+#include "InputController.h"
 
 /*
 GameStateManager Class:
@@ -14,11 +16,18 @@ TODO:
 class GameStateManager
 {
 public:
-	GameStateManager() = default;
+	GameStateManager();
 	GameStateManager(GameState*);
 
 	void Switch(GameState*);
 	GameState* GetState();
+	void PushState(GameState* state);
+
+	void Update(double deltaTime);
+
+	shared_ptr<InputController> GetInputController();
 private:
-	GameState * mCurrentState;
+	GameState* mCurrentState;
+	stack<GameState*> mStateStack;
+	shared_ptr<InputController> mInputController;
 };

@@ -13,78 +13,249 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{4752c4e2-580f-472d-8bf1-4bb29b48ae6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Header">
+      <UniqueIdentifier>{f850de9e-354c-4e18-bb1c-41ece19bc7bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Source">
+      <UniqueIdentifier>{a31f96cb-acae-4afc-8070-a7ada7b1a103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{5021e1bb-17e6-4070-9db0-623d6b011919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Header">
+      <UniqueIdentifier>{aa580049-d29e-4662-bf79-6141610cd144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Source">
+      <UniqueIdentifier>{972cd9bc-e815-46c6-b774-c2429b33fbd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{8cd44cb8-8b7c-4d2a-bb69-d4073c3ee8c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Header">
+      <UniqueIdentifier>{033a22af-ff2b-4355-93e0-a351ac130423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\Source">
+      <UniqueIdentifier>{df2cc2cd-7275-461b-9baf-af3f674eedb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{0cbbda03-9329-4a06-81ea-172077539c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Header">
+      <UniqueIdentifier>{45fd3871-34d4-44d3-b67d-304c824e5b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Source">
+      <UniqueIdentifier>{01b554d6-c6fb-4423-aba9-b250e7950380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{392b92a2-a18c-4c2e-a6ea-b00a79334dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Header">
+      <UniqueIdentifier>{7eb51bc9-aaec-4b78-bb13-834c0ce6e587}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Source">
+      <UniqueIdentifier>{c1f7a608-c034-4b46-b575-1505b2c5d3aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="CharacterScript.cpp">
+      <Filter>Scripts\Source</Filter>
     </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="TigerObj.cpp">
+      <Filter>Objects\Source</Filter>
     </ClCompile>
-    <ClCompile Include="GameWindow.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="FPSObj.cpp">
+      <Filter>Objects\Source</Filter>
     </ClCompile>
-    <ClCompile Include="RenderEngine.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="FPSScript.cpp">
+      <Filter>Scripts\Source</Filter>
     </ClCompile>
-    <ClCompile Include="SurfaceLoader.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="CharacterScript2.cpp">
+      <Filter>Scripts\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStateManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DXText.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PlaneObj.cpp">
+      <Filter>Objects\Source</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Scenes\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Objects\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraScript.cpp">
+      <Filter>Scripts\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWindow.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyState.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="MeshRenderer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectScript.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectState.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="InputController.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderEngine.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SurfaceLoader.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Engine\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="LightRenderer.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalLight.cpp">
+      <Filter>Objects\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Spotlight.cpp">
+      <Filter>Objects\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Objects\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalScript.cpp">
+      <Filter>Scripts\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotScript.cpp">
+      <Filter>Scripts\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PointScript.cpp">
+      <Filter>Scripts\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CharacterScript.h">
+      <Filter>Scripts\Header</Filter>
     </ClInclude>
-    <ClInclude Include="GameEngine.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="TigerObj.h">
+      <Filter>Objects\Header</Filter>
     </ClInclude>
-    <ClInclude Include="GameWindow.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="FPSObj.h">
+      <Filter>Objects\Header</Filter>
     </ClInclude>
-    <ClInclude Include="RenderEngine.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="FPSScript.h">
+      <Filter>Scripts\Header</Filter>
     </ClInclude>
-    <ClInclude Include="SurfaceLoader.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CharacterScript2.h">
+      <Filter>Scripts\Header</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStateManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DXText.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="PlaneObj.h">
+      <Filter>Objects\Header</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">
-      <Filter>Header Files</Filter>
+      <Filter>Scenes\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraScript.h">
+      <Filter>Scripts\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Engine\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>Engine\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderEngine.h">
+      <Filter>Engine\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWindow.h">
+      <Filter>Engine\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Engine\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="InputController.h">
+      <Filter>Engine\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyState.h">
+      <Filter>Engine\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SurfaceLoader.h">
+      <Filter>Engine\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Components\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>Components\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectState.h">
+      <Filter>Components\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectScript.h">
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="MeshRenderer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Components\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Components\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Components\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Components\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="LightRenderer.h">
+      <Filter>Components\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.h">
+      <Filter>Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Spotlight.h">
+      <Filter>Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Objects\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalScript.h">
+      <Filter>Scripts\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotScript.h">
+      <Filter>Scripts\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PointScript.h">
+      <Filter>Scripts\Header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

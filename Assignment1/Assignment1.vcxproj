@@ -131,30 +131,72 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DXText.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraScript.cpp" />
+    <ClCompile Include="CharacterScript.cpp" />
+    <ClCompile Include="CharacterScript2.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
+    <ClCompile Include="DirectionalScript.cpp" />
+    <ClCompile Include="FPSObj.cpp" />
+    <ClCompile Include="FPSScript.cpp" />
+    <ClCompile Include="LightRenderer.cpp" />
+    <ClCompile Include="ObjectScript.cpp" />
+    <ClCompile Include="PlaneObj.cpp" />
+    <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="PointScript.cpp" />
+    <ClCompile Include="Spotlight.cpp" />
+    <ClCompile Include="SpotScript.cpp" />
+    <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameWindow.cpp" />
+    <ClCompile Include="InputController.cpp" />
+    <ClCompile Include="KeyState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
+    <ClCompile Include="ObjectState.cpp" />
     <ClCompile Include="RenderEngine.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="SurfaceLoader.cpp" />
     <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="TigerObj.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DXText.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraScript.h" />
+    <ClInclude Include="CharacterScript.h" />
+    <ClInclude Include="CharacterScript2.h" />
+    <ClInclude Include="DirectionalLight.h" />
+    <ClInclude Include="DirectionalScript.h" />
+    <ClInclude Include="FPSObj.h" />
+    <ClInclude Include="FPSScript.h" />
+    <ClInclude Include="LightRenderer.h" />
+    <ClInclude Include="PlaneObj.h" />
+    <ClInclude Include="PointLight.h" />
+    <ClInclude Include="PointScript.h" />
+    <ClInclude Include="Spotlight.h" />
+    <ClInclude Include="SpotScript.h" />
+    <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameWindow.h" />
+    <ClInclude Include="InputController.h" />
+    <ClInclude Include="KeyState.h" />
     <ClInclude Include="MeshRenderer.h" />
+    <ClInclude Include="ObjectScript.h" />
+    <ClInclude Include="ObjectState.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SurfaceLoader.h" />
     <ClInclude Include="RenderEngine.h" />
     <ClInclude Include="TestScene.h" />
+    <ClInclude Include="TigerObj.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

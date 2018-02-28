@@ -19,16 +19,19 @@ class GameState
 public:
 	GameState() = default;
 	GameState(Scene*);
-	//virtual ~GameState();
+	virtual ~GameState() = default;
 
 	void AddScene(Scene*);
 	Scene* GetScene(const unsigned int);
 	Scene* GetCurrentScene();
+	vector<Scene*> GetScenes();
 	void RemoveScene(Scene*);
 	void RemoveScene(const unsigned int);
 
-	void Update();
+	void Update(double deltaTime);
 	void Render();
+
+	void SetInputController(InputController* inputController);
 private:
 	int mSceneIndex = -1;
 	vector<Scene*> mScenes;

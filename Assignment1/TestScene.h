@@ -1,6 +1,14 @@
 #pragma once
 #include <d3dx9.h>
 #include "Scene.h"
+#include "SurfaceLoader.h"
+#include "Camera.h"
+#include "TigerObj.h"
+#include "FPSObj.h"
+#include "PlaneObj.h"
+#include "DirectionalLight.h"
+#include "Spotlight.h"
+#include "PointLight.h"
 /*
 TestScene Class:
 - current demo scene
